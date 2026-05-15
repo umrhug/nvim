@@ -1,27 +1,55 @@
--- basic settings
 --
-require('base')
+---- basic settings
+--
 require('autocmds')
-require('options')
+require('base')
 require('keymaps')
-require('colorscheme')
-require('plugins')
+require('options')
 
--- share clipboard with os
+require('config.lazy')
+
+
 --
-vim.opt.clipboard:append('unnamedplus,unnamed')
+---- Japanese input configuration
+--[[
+local function trim(s)
+  return s:match("^%s*(.-)%s*$")
+end
 
--- call command to read nvim configuration file
---
-vim.api.nvim_create_user_command(
-	'InitLua',
-	function()
-		vim.cmd.edit(vim.fn.stdpath('config') .. '/init.lua')
-	end,
-	{ desc = 'Open init.lua' }
-)
 
--- python3 virtual environment
---
-vim.g.python3_host_prog = vim.fn.expand('~/.local/share/nvim/venv/bin/python3')
+local function GetFcitxStatus()
+  local handle = io.popen('fcitx5-remote -n')
+  local result = handle:read("*a")
+  handle:close()
+  return trim(result)
+end
 
+
+local function OnInsertLeave()
+  -- Save fcitx status when leaving insert mode
+  vim.g.fcitx_status = GetFcitxStatus()
+  -- Disable (Japanese) input method
+  os.execute('fcitx5-remote -c')
+end
+
+
+local function Enable(status)
+  if status ~= 'keyboard-us' then
+    os.execute('fcitx5-remote -o')
+  end
+end
+
+
+vim.g.fcitx_status = GetFcitxStatus()
+
+
+-- Autocmd for InsertLeave and InsertEnter
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = OnInsertLeave
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    Enable(vim.g.fcitx_status)
+  end
+})]]

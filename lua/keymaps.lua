@@ -4,10 +4,16 @@ local term_opts = { silent = true }
 -- local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
 
+
 -- Remap space as leader key
+-- set inside config/lazy.lua
+--[[
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+--]]
+-- set inside config/lazy.lua
+
 
 -- Modes
 -- normal_mode = 'n'
@@ -28,8 +34,12 @@ keymap('n', '<C-l>', '<C-w>l', opts)
 keymap('n', 'te', ':tabedit', opts)
 keymap('n', 'gn', ':tabnew<Return>', opts)
 -- Move tab
-keymap('n', '<C-n>', 'gT', opts)
-keymap('n', '<C-p>', 'gt', opts)
+--keymap('n', '<C-n>', 'gT', opts)
+--keymap('n', '<C-p>', 'gt', opts)
+keymap('n', '<C-p>', '<CMD>BufferLineCyclePrev<CR>', opts)
+keymap('n', '<C-n>', '<CMD>BufferLineCycleNext<CR>', opts)
+-- keymap('n', '<leader>x', '<CMD>bdelete<CR>', opts)
+-- keymap('n', 'gb', '<CMD>BufferLinePick<CR>', opts)
 
 -- clear hlsearch selections
 keymap('n', 'gh', ":let @/=''<CR>", opts)
@@ -62,11 +72,19 @@ keymap('n', 'Y', 'y$', opts)
 keymap('n', '<Space>q', ':<C-u>q!<Return>', opts)
 
 -- Erase highlight
-keymap('n', '<ESC><ESC>', ':<C-u>set nohlsearch<Return>', opts)
+-- keymap('n', '<ESC><ESC>', ':<C-u>set nohlsearch<Return>', opts)
 
 -- Insert mode --
 -- Press jk fast to exit insert mode
 keymap('i', 'jk', '<ESC>', opts)
+
+keymap('i', '<C-x>', '<DEL>', opts)
+keymap('i', '<C-a>', '<HOME>', opts)
+keymap('i', '<C-e>', '<END>', opts)
+keymap('i', '<C-l>', '<RIGHT>', opts)
+keymap('i', '<C-j>', '<DOWN>', opts)
+keymap('i', '<C-k>', '<UP>', opts)
+keymap('i', '<C-h>', '<BACKSPACE>', opts)
 
 -- Insert a space <SPACE> after the comma ','
 keymap('i', ',', ',<SPACE>', opts)
@@ -81,4 +99,3 @@ keymap('v', 'v', '$h', opts)
 
 -- #0 register
 -- NG setting; keymap('v', '<C-p>', '"0p', opts)
-

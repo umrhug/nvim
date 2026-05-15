@@ -1,8 +1,41 @@
 vim.cmd('autocmd!')
-vim.scriptencoding = 'utf-8'
+vim.scriptingencoding = 'utf-8'
 vim.wo.number = true
 
-vim.api.nvim_create_user_command("Hoge", function(opts)
-    vim.cmd("e " .. "~/._/hoge/hoge.markdown")
-end, {})
+-- share clipboard with os
+vim.opt.clipboard:append('unnamedplus,unnamed')
+
+-- call command to read nvim configuration file
+vim.api.nvim_create_user_command(
+	'InitLua',
+	function()
+		vim.cmd.edit(vim.fn.stdpath('config') .. '/init.lua')
+	end,
+	{ desc = 'Open init.lua' }
+)
+-- call command to memorize
+vim.api.nvim_create_user_command(
+  'MarkUp',
+  function()
+    filename = os.date('%Y%m%d.md')
+    vim.cmd('cd ~/._')
+    vim.cmd.edit('~/._/' .. filename)
+  end,
+  { desc = 'Open today' .. "'s " .. 'markdown log file' }
+)
+-- call command to byobu popup
+vim.api.nvim_create_user_command(
+  'UpTerminal',
+  function()
+    vim.cmd('!byobu popup -E fish')
+  end,
+  { desc = 'Byobu popup command' }
+)
+
+-- virtual environment for python3
+vim.g.python3_host_prog = vim.fn.expand(vim.fn.stdpath('data') .. '/venv/bin/python3')
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+
+vim.g.have_nerd_font = false
 

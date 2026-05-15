@@ -6,8 +6,8 @@
 ###
 !/.gitignore
 !/init.lua
-!/lua
-!/lua/config
-!/lua/plugins
-!/plugin
+!/lua/
+!/lua/config/
+!/lua/plugins/
+!/plugin/
 

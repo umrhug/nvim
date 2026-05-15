@@ -1,11 +1,17 @@
-###
+### at first, ignore all files
 /*
-/*.*
 /.**
 
-###
+### add each file
 !/.gitignore
 !/init.lua
 !/lua
+!/lua/autocmds.lua
+!/lua/base.lua
+!/lua/colorscheme.lua
+!/lua/keymaps.lua
+!/lua/options.lua
+!/lua/plugins.lua
 !/plugin
+!/plugin/packer_compiled.lua
 

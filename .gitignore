@@ -1,13 +1,25 @@
-###
+### at first, ignore all files
 /*
-/*.*
 /.**
 
-###
+### add each file
 !/.gitignore
 !/init.lua
-!/lua/
-!/lua/config/
-!/lua/plugins/
-!/plugin/
+!/lua
+!/lua/autocmds.lua
+!/lua/base.lua
+!/lua/keymaps.lua
+!/lua/options.lua
+!/lua/config
+!/lua/config/lazy.lua
+!/lua/plugins
+!/lua/plugins/bufferline.lua
+!/lua/plugins/colorscheme.lua
+!/lua/plugins/noice.lua
+!/lua/plugins/oil.lua
+!/lua/plugins/quickfix.lua
+!/lua/plugins/statusline.lua
+!/lua/plugins/telescope.lua
+!/lua/plugins/toggleterm.lua
+!/lua/plugins/which-key.lua
 

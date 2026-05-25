@@ -15,13 +15,13 @@ vim.api.nvim_create_user_command(
 )
 -- call command to memorize
 vim.api.nvim_create_user_command(
-  'MarkUp',
+  'OpenNotes',
   function()
     filename = os.date('%Y%m%d.md')
-    vim.cmd('cd ~/._')
-    vim.cmd.edit('~/._/' .. filename)
+    vim.cmd('cd ~/.notes')
+    vim.cmd.edit('~/.notes/' .. filename)
   end,
-  { desc = 'Open today' .. "'s " .. 'markdown log file' }
+  { desc = 'Open today' .. "'s " .. 'markdown note.' }
 )
 -- call command to byobu popup
 vim.api.nvim_create_user_command(

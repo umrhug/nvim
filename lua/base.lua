@@ -14,7 +14,7 @@ vim.api.nvim_create_user_command(
 	{ desc = 'Open init.lua' }
 )
 -- call command to memorize
-vim.api.nvim_create_user_command(
+--[[ vim.api.nvim_create_user_command(
   'OpenNotes',
   function()
     filename = os.date('%Y%m%d.md')
@@ -22,7 +22,7 @@ vim.api.nvim_create_user_command(
     vim.cmd.edit('~/.notes/' .. filename)
   end,
   { desc = 'Open today' .. "'s " .. 'markdown note.' }
-)
+) ]]--
 -- call command to byobu popup
 vim.api.nvim_create_user_command(
   'UpTerminal',

@@ -29,8 +29,10 @@ return {
       { '<leader>bd', '<cmd>bdelete<cr>', desc='delete' }, 
       { '<leader>bD', '<cmd>bdelete!<cr>', desc='force delete' }, 
       { '<leader>mi', '<cmd>InitLua<cr>', desc='InitLua' }, 
-      { '<leader>ml', '<cmd>MDown<cr>', desc='Open Markdown Logs' }, 
       { '<leader>mu', '<cmd>UpTerminal<cr>', desc='Byobu PopUp Terminal' }, 
+      --{ '<leader>no', '<cmd>NotesOpen<cr>', desc='Open Notes' }, 
+      --{ '<leader>ns', '<cmd>NotesSearch<cr>', desc='Search Notes' }, 
+      --{ '<leader>ng', '<cmd>NotesGrep<cr>', desc='Grep Notes' }, 
     }, 
     config = function()
       require('which-key').setup({
@@ -88,6 +90,7 @@ return {
         }, 
         { '<leader>g', group = 'git' }, 
         { '<leader>m', group = 'commands' }, 
+        { '<leader>n', group = 'notes' }, 
         { '<leader>t', group = 'terminal' }, 
         { '<leader>w', proxy = '<c-w>', group = 'windows' },
         {
